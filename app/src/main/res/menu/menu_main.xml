@@ -1,0 +1,20 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:myApp="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/popularNow"
+        android:title="Popular now" />
+    <item
+        android:id="@+id/bestAction"
+        android:title="Best action" />
+    <item
+        android:id="@+id/bestDrama"
+        android:title="Best drama" />
+    <item
+        android:id="@+id/bestComedy"
+        android:title="Best comedy" />
+    <item
+        android:id="@+id/bestOfAllTime"
+        android:title="Best of all time" />
+
+</menu>

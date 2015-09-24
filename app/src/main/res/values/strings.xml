@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Popular Movies</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title">Title:</string>
+    <string name="language">Language:</string>
+    <string name="date">Date:</string>
+    <string name="Vote_Average">Vote:</string>
+    <string name="vote_amount">Amount:</string>
+    <string name="trailer">Watch trailer</string>
+
+</resources>
