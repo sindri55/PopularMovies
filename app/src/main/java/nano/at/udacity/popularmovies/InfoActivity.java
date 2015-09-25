@@ -3,6 +3,7 @@ package nano.at.udacity.popularmovies;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.ContentProviderOperation;
+import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
@@ -49,6 +50,11 @@ public class InfoActivity extends YouTubeBaseActivity implements YouTubePlayer.O
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
+
+        // Rotate only for tablets
+        if(getResources().getBoolean(R.bool.portrait_only)){
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        }
 
         Bundle bundle = getIntent().getBundleExtra("Bundle");
         if (bundle != null) {
