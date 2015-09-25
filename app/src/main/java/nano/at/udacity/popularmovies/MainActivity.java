@@ -31,7 +31,6 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ProgressDialog pd = null;
     private static final String BUNDLE_KEY_GRID_INDEX = "index";
     private int mIndex = 0;
 
@@ -44,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     private String DRAMA_BEST_URL = "with_genres=18&sort_by=vote_average.desc&vote_count.gte=1000";
     private String BEST_OFF_ALL_TIME = "?primary_release_date.gte=1990-09-15&primary_release_date.lte=2016-10-22&sort_by=vote_average.desc&vote_count.gte=1000";
     private String PAGE = "page=";
-    private String API_KEY = "&api_key=2733c0a0178777342548a83fa5aefec3";
+    private String API_KEY = "&api_key=###";
     private ImageAdapter adapter = null;
 
     GridView gridView;
@@ -53,11 +52,6 @@ public class MainActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        // Rotate only for tablets
-        if(getResources().getBoolean(R.bool.portrait_only)){
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        }
 
         // Dont know why i need this but i do for the actionbar to work
         try {
@@ -73,7 +67,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         //Getting 3 pages of popular movies in a get request
-        this.pd = ProgressDialog.show(this, "Working..", "Downloading Data...", true, false);
         for(int i = 3; i >= 1; i--){
             new DownloadTask().execute(API_URL + POPULAR_NOW_URL + PAGE + i + API_KEY);
 
@@ -119,7 +112,6 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case (R.id.popularNow):
 
-                this.pd = ProgressDialog.show(this, "Working..", "Downloading Data...", true, false);
                 for(int i = 3; i >= 1; i--){
                     new DownloadTask().execute(API_URL + POPULAR_NOW_URL + PAGE + i + API_KEY);
                 }
@@ -127,25 +119,21 @@ public class MainActivity extends AppCompatActivity {
 
             case (R.id.bestAction):
 
-                this.pd = ProgressDialog.show(this, "Working..", "Downloading Data...", true, false);
                     new DownloadTask().execute(API_URL + ACTION_BEST_URL + API_KEY);
                 break;
 
             case(R.id.bestComedy):
 
-                this.pd = ProgressDialog.show(this, "Working..", "Downloading Data...", true, false);
                     new DownloadTask().execute(API_URL + COMEDY_BEST_URL + API_KEY);
                 break;
 
             case(R.id.bestDrama):
 
-                this.pd = ProgressDialog.show(this, "Working..", "Downloading Data...", true, false);
                     new DownloadTask().execute(API_URL + DRAMA_BEST_URL + API_KEY);
                 break;
 
             case(R.id.bestOfAllTime):
 
-                this.pd = ProgressDialog.show(this, "Working..", "Downloading Data...", true, false);
                     new DownloadTask().execute(API_URL + BEST_OFF_ALL_TIME + API_KEY);
                 break;
         }
@@ -278,10 +266,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
-            // dialog
-            if (MainActivity.this.pd != null) {
-                MainActivity.this.pd.dismiss();
-            }
+
 
         }
 

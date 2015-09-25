@@ -51,10 +51,7 @@ public class InfoActivity extends YouTubeBaseActivity implements YouTubePlayer.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
 
-        // Rotate only for tablets
-        if(getResources().getBoolean(R.bool.portrait_only)){
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        }
+
 
         Bundle bundle = getIntent().getBundleExtra("Bundle");
         if (bundle != null) {
@@ -107,6 +104,12 @@ public class InfoActivity extends YouTubeBaseActivity implements YouTubePlayer.O
         if (result.isUserRecoverableError()) {
             result.getErrorDialog(this, RQS_ErrorDialog).show();
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        this.finish();
     }
 
     private class DownloadVideo extends AsyncTask<String, Void, String> {
